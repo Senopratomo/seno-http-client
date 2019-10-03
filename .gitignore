@@ -10,5 +10,8 @@ nbproject
 
 **/target/*
 *.iml
-/target/*
+/target/**
 /out/*
+target
+senohttp_win
+senohttp_win/**

@@ -27,7 +27,7 @@ public class Main {
                     System.out.println("Example:\n");
                     System.out.println("Sample with 2 arguments:\n$http GET \"https://www.senolab.org/\"\n" );
                     System.out.println("Sample with 3 arguments:\n$http GET \"https://www.senolab.org/\" /home/esenopra/headers.txt\nwhere headers.txt contains 'content-type, application/json, accept-encoding, gzip'\n");
-                    System.out.println("Sample with 3 arguments:\n$http POST \"https://www.senolab.org/api/v1/\" /home/esenopra/headers.txt /home/esenopra/json_body.json\n" +
+                    System.out.println("Sample with 4 arguments:\n$http POST \"https://www.senolab.org/api/v1/\" /home/esenopra/headers.txt /home/esenopra/json_body.json\n" +
                             "where headers.txt contains 'content-type, application/json'\n" +
                             "where json_body.json contains '{\"name\":\"Ernesto\"}");
             }

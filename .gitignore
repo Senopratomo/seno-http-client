@@ -14,4 +14,8 @@ nbproject
 /out/*
 target
 senohttp_win
+senohttp_win.zip
 senohttp_win/**
+senohttp_nix.zip
+senohttp_nix
+senohttp_nix/**

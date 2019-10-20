@@ -48,10 +48,12 @@ public class SenoHttpRequest {
         } catch (URISyntaxException uriE) {
             System.out.println("Something wrong with the URL that you specified. Error: ");
             System.out.println(stackTraceToString(uriE));
+            System.exit(0);
 
         } catch (IllegalArgumentException il) {
             System.out.println("An Error occurred due to : ");
             System.out.println(stackTraceToString(il));
+            System.exit(0);
         }
     }
 
@@ -89,12 +91,15 @@ public class SenoHttpRequest {
         } catch (URISyntaxException uriE) {
             System.out.println("Something wrong with the URL that you specified. Error: ");
             System.out.println(stackTraceToString(uriE));
+            System.exit(0);
         } catch (IllegalArgumentException il) {
             System.out.println("An Error occurred due to : ");
             System.out.println(stackTraceToString(il));
+            System.exit(0);
         } catch (IOException ioe) {
             System.out.println("Something wrong during input - output process: ");
             System.out.println(stackTraceToString(ioe));
+            System.exit(0);
         }
     }
 
@@ -126,12 +131,15 @@ public class SenoHttpRequest {
         } catch (URISyntaxException uriE) {
             System.out.println("Something wrong with the URL that you specified. Error: ");
             System.out.println(stackTraceToString(uriE));
+            System.exit(0);
         } catch (IllegalArgumentException il) {
             System.out.println("An Error occurred due to : ");
             System.out.println(stackTraceToString(il));
+            System.exit(0);
         } catch (IOException ioe) {
             System.out.println("Something wrong during input - output process: ");
             System.out.println(stackTraceToString(ioe));
+            System.exit(0);
         }
     }
 
@@ -158,9 +166,11 @@ public class SenoHttpRequest {
         catch (IOException ioe) {
             System.out.println("Something wrong during input - output process: ");
             System.out.println(stackTraceToString(ioe));
+            System.exit(0);
         } catch (InterruptedException ie) {
             System.out.println("The HTTP communication is interrupted:  ");
             System.out.println(stackTraceToString(ie));
+            System.exit(0);
         }
     }
 

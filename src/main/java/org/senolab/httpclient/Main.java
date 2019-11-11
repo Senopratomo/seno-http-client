@@ -21,26 +21,27 @@ public class Main {
                     senoHttpRequest.execute();
                     break;
                 default:
-                    System.out.println("You have pass on an invalid number of arguments. This script accept 2 - 4 arguments (see below)");
-                    System.out.println("Command line + argument description\n$http <http method> <Full URL including hostname and protocol surrounded with double quotes> " +
-                            "<comma-delimeted file containing headerName, headerValue> <file containing the HTTP request body to be send>");
-                    System.out.println("Example:\n");
-                    System.out.println("Sample with 2 arguments:\n$http GET \"https://www.senolab.org/\"\n" );
-                    System.out.println("Sample with 3 arguments:\n$http GET \"https://www.senolab.org/\" /home/esenopra/headers.txt\nwhere headers.txt contains 'content-type, application/json, accept-encoding, gzip'\n");
-                    System.out.println("Sample with 4 arguments:\n$http POST \"https://www.senolab.org/api/v1/\" /home/esenopra/headers.txt /home/esenopra/json_body.json\n" +
-                            "where headers.txt contains 'content-type, application/json'\n" +
-                            "where json_body.json contains '{\"name\":\"Ernesto\"}");
+                    printInstructions();
             }
         } else {
-            System.out.println("You have pass on an invalid number of arguments. This script accept 2 - 4 arguments (see below)");
-            System.out.println("Command line + argument description\n$http <http method> <Full URL including hostname and protocol surrounded with double quotes> " +
-                    "<comma-delimeted file containing headerName, headerValue> <file containing the HTTP request body to be send>");
-            System.out.println("Example:");
-            System.out.println("Sample with 2 arguments:\n$http GET \"https://www.senolab.org/\"" );
-            System.out.println("Sample with 3 arguments:\n$http GET \"https://www.senolab.org/\" /home/esenopra/headers.txt\n where headers.txt contains 'content-type, application/json, accept-encoding, gzip'");
-            System.out.println("Sample with 3 arguments:\n$http POST \"https://www.senolab.org/api/v1/\" /home/esenopra/headers.txt /home/esenopra/json_body.json\n " +
-                    "where headers.txt contains 'content-type, application/json'\n" +
-                    "where json_body.json contains '{\"name\":\"Ernesto\"");
+            printInstructions();
         }
     }
+
+    private static void printInstructions() {
+        System.out.println("You have pass on an invalid number of arguments. This script accept 2 - 4 arguments (see below)");
+        System.out.println("Command line + argument description\n$http <http method> <Full URL including hostname and protocol surrounded with double quotes> " +
+                "<comma-delimeted file containing headerName, headerValue or special string* - see below> <file containing the HTTP request body to be send>");
+        System.out.println("* you can specify the below shortcut as the 3rd argument for the following headers:\n" +
+                "- json --> 'content-type: application/json'\n" +
+                "- xml --> 'content-type: application/xml'\n\n");
+        System.out.println("Example:");
+        System.out.println("Sample with 2 arguments:\n$http GET \"https://www.senolab.org/\"" );
+        System.out.println("Sample with 3 arguments:\n$http GET \"https://www.senolab.org/\" /home/esenopra/headers.txt\n where headers.txt contains 'content-type, application/json, accept-encoding, gzip'");
+        System.out.println("Sample with 4 arguments:\n$http POST \"https://www.senolab.org/api/v1/\" /home/esenopra/headers.txt /home/esenopra/json_body.json\n " +
+                "where headers.txt contains 'content-type, application/json'\n " +
+                "where json_body.json contains '{\"name\":\"Ernesto\"}");
+    }
+
+
 }

@@ -82,11 +82,7 @@ public class SenoHttpRequest {
                     requestBuilder.method(method.toUpperCase(), BodyPublishers.noBody());
                     break;
             }
-            var headers = new StringTokenizer(Files.readString(Path.of(headerFile)), ",");
-            if (headers.countTokens() > 1 && (headers.countTokens() % 2 == 0)) {
-                while (headers.hasMoreTokens())
-                    requestBuilder.header(headers.nextToken(), headers.nextToken());
-            }
+            setHeaders(headerFile);
 
         } catch (URISyntaxException uriE) {
             System.out.println("Something wrong with the URL that you specified. Error: ");
@@ -122,11 +118,7 @@ public class SenoHttpRequest {
                     requestBuilder.method(method.toUpperCase(), BodyPublishers.ofFile(Path.of(bodyFileName)));
                     break;
             }
-            var headers = new StringTokenizer(Files.readString(Path.of(headerFile)), ",");
-            if (headers.countTokens() > 1 && (headers.countTokens() % 2 == 0)) {
-                while (headers.hasMoreTokens())
-                    requestBuilder.header(headers.nextToken(), headers.nextToken());
-            }
+            setHeaders(headerFile);
 
         } catch (URISyntaxException uriE) {
             System.out.println("Something wrong with the URL that you specified. Error: ");
@@ -178,5 +170,20 @@ public class SenoHttpRequest {
         StringWriter errors = new StringWriter();
         e.printStackTrace(new PrintWriter(errors));
         return errors.toString();
+    }
+
+    private void setHeaders(String headerFile) throws IOException {
+        if (headerFile.equalsIgnoreCase("json")) {
+            requestBuilder.header("Content-Type", "application/json");
+        } else if(headerFile.equalsIgnoreCase("xml")) {
+            requestBuilder.header("Content-Type", "application/xml");
+        } else if(Files.exists(Path.of(headerFile))) {
+            var headers = new StringTokenizer(Files.readString(Path.of(headerFile)), ",");
+            if (headers.countTokens() > 1 && (headers.countTokens() % 2 == 0)) {
+                while (headers.hasMoreTokens())
+                    requestBuilder.header(headers.nextToken(), headers.nextToken());
+            }
+        }
+
     }
 }

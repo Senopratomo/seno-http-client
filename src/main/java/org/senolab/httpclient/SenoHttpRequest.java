@@ -138,7 +138,9 @@ public class SenoHttpRequest {
     public void execute() {
         try {
             HttpRequest request = requestBuilder.build();
+            long start = System.currentTimeMillis();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            long end = System.currentTimeMillis();
             HttpHeaders requestHeaders = response.request().headers();
             HttpHeaders responseHeaders = response.headers();
             System.out.println("HTTP Request headers: ");
@@ -154,6 +156,7 @@ public class SenoHttpRequest {
                 System.out.println(key + ": " + responseHeaders.map().get(key));
             }
             System.out.println("\nHTTP Response body: \n"+response.body());
+            System.out.println("Time taken: "+(end-start)+" ms");
         }
         catch (IOException ioe) {
             System.out.println("Something wrong during input - output process: ");
@@ -178,10 +181,9 @@ public class SenoHttpRequest {
         } else if(headerFile.equalsIgnoreCase("xml")) {
             requestBuilder.header("Content-Type", "application/xml");
         } else if(Files.exists(Path.of(headerFile))) {
-            var headers = new StringTokenizer(Files.readString(Path.of(headerFile)), ",");
-            if (headers.countTokens() > 1 && (headers.countTokens() % 2 == 0)) {
-                while (headers.hasMoreTokens())
-                    requestBuilder.header(headers.nextToken(), headers.nextToken());
+            var headers = Files.readString(Path.of(headerFile)).split(",");
+            if (headers.length >= 2  && (headers.length % 2 == 0)) {
+                requestBuilder.headers(headers);
             }
         }
 

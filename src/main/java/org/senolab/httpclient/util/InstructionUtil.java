@@ -3,7 +3,7 @@ package org.senolab.httpclient.util;
 public class InstructionUtil {
     public static void printInstructions() {
         String instruction = """
-                SenoHttpClient v1.1.5
+                SenoHttpClient v1.2.0
                 
                 You have pass on an invalid number of arguments. This script accept 2 - 4 arguments (see below)
                 Command line + argument description

@@ -18,6 +18,7 @@ import java.util.StringTokenizer;
 public class SenoHttpRequest {
     private HttpClient client;
     private HttpRequest.Builder requestBuilder;
+    private String requestBodyFileName;
 
     public SenoHttpRequest(String method, String url) {
         try {
@@ -101,6 +102,7 @@ public class SenoHttpRequest {
 
     public SenoHttpRequest(String method, String url, String headerFile, String bodyFileName) {
         try {
+            requestBodyFileName = bodyFileName;
             client = HttpClient.newBuilder()
                     .version(HttpClient.Version.HTTP_1_1)
                     .connectTimeout(Duration.ofSeconds(5))
@@ -148,6 +150,11 @@ public class SenoHttpRequest {
                 System.out.println(key + ": " + requestHeaders.map().get(key));
             }
             System.out.println();
+            if(requestBodyFileName != null) {
+                System.out.println("HTTP Request Body: ");
+                System.out.println(Files.readString(Path.of(requestBodyFileName)));
+                System.out.println();
+            }
             System.out.println("HTTP version: " + response.version());
             response.sslSession().ifPresent(sslSession -> System.out.println("\nSSL protocol: " + sslSession.getProtocol()));
             System.out.println("\nHTTP Response code: " + response.statusCode());
